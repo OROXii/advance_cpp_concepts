@@ -82,6 +82,13 @@ int main() {
     return 0;
 }
 ```
+This function uses C++'s trailing return type syntax.
+- `auto`: Placeholder for the actual return type
+- `decltype(a*b)`: Specifies the actual return type using the decltype operator
+`decltype(a*b)` determines the return type based on what type results from multiplying parameters a and b. This allows the function to handle different type combinations automatically:
+- When multiplying `int` and `double`, it returns `double`
+- When multiplying `int` and `int`, it returns `int`
+- When multiplying any types with an `overloaded` * `operator`, it returns whatever type that `operation produces`
 
 ### Template Argument Deduction
 
