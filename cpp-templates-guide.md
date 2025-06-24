@@ -266,6 +266,33 @@ int main() {
     return 0;
 }
 ```
+1. `Predicate` in `template<typename Predicate>` is a generic type parameter that can be any callable entity
+
+2. When we call `filter` with:
+```cpp
+auto evens = numbers.filter([](int x) { return x % 2 == 0; });
+```
+   The lambda function `[](int x) { return x % 2 == 0; }` becomes the actual `Predicate`
+
+3. Inside the filter method, `pred(item)` calls the lambda for each item
+
+4. Conceptually
+```cpp
+if(pred(item)) { ... }
+```
+effectively becomes:
+```cpp
+if(item % 2 == 0) { ... }
+```
+
+#### Why This Is Powerful
+
+This pattern (called a higher-order function) lets you customize behavior without modifying the class. You could just as easily filter for:
+
+```cpp
+auto odds = numbers.filter([](int x) { return x % 2 != 0; });
+auto largeNumbers = numbers.filter([](int x) { return x > 5; });
+```
 
 ## Template Parameters
 
